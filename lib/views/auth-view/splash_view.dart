@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ziscomm/utils/app_constant.dart';
 import 'package:ziscomm/views/auth-view/login_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -40,7 +41,7 @@ class _SplashViewState extends State<SplashView> {
             height: height * 0.04,
           ),
           Text(
-            'Powerd by Sikandar Afridi',
+            AppConstant.appPowerdBy,
             style: GoogleFonts.anton(letterSpacing: .6, color: Colors.white),
           ),
           SizedBox(
