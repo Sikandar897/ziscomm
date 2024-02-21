@@ -1,5 +1,3 @@
-// custom_textfield.dart
-
 import 'package:flutter/material.dart';
 import '../../utils/app_constant.dart';
 
