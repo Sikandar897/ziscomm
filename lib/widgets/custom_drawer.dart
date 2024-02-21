@@ -2,18 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:ziscomm/utils/app_constant.dart';
 import 'package:ziscomm/views/about_us.dart';
 import 'package:ziscomm/views/auth-view/login_view.dart';
-
-import '../views/contact_us.dart';
+import 'package:ziscomm/views/contact_us.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
+
+  // Perform a simple logout
+  void _logout(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginView(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: const Color.fromARGB(
-            255, 226, 104, 17), // Drawer background color
+        color: const Color.fromARGB(255, 226, 104, 17),
         child: ListView(
           children: [
             const DrawerHeader(
@@ -45,38 +53,45 @@ class CustomDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.contact_phone, color: Colors.white),
-              trailing: const Icon(Icons.arrow_forward,
-                  color: AppConstant.appTextColor),
+              trailing: const Icon(Icons.arrow_forward, color: AppConstant.appTextColor),
               title: const Text(
                 'Contact',
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactUsView()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ContactUsView(),
+                  ),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.info, color: Colors.white),
-              trailing: const Icon(Icons.arrow_forward,
-                  color: AppConstant.appTextColor), 
+              trailing: const Icon(Icons.arrow_forward, color: AppConstant.appTextColor),
               title: const Text(
                 'About Us',
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutUsView(),));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AboutUsView(),
+                  ),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.white),
-              trailing: const Icon(Icons.arrow_forward,
-                  color: AppConstant.appTextColor), 
+              trailing: const Icon(Icons.arrow_forward, color: AppConstant.appTextColor),
               title: const Text(
                 'Logout',
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginView(),));
+                _logout(context); // Call the logout function
               },
             ),
           ],

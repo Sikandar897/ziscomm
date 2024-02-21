@@ -6,7 +6,7 @@ class AuthRepository {
   Future<bool> login(String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('https://reqres.in/api/login'),
+        Uri.parse('https://reqres.in/api/register'),
         body: {
           'email': email,
           'password': password,
