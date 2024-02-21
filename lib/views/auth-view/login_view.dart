@@ -1,36 +1,87 @@
-// login.dart
-
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../repository/auth_repository.dart';
 import '../../utils/app_constant.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/custom_textfield.dart';
 import '../home_view.dart';
-
+import 'registration.dart';
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  const LoginView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  LoginViewState createState() => LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class LoginViewState extends State<LoginView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final AuthRepository authRepository = AuthRepository();
-
   bool isPasswordVisible = false;
   bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppConstant.appMainColor,
+      body: Center(
+        child: SizedBox(
+          width: 400,
+          child: Card(
+            color: AppConstant.appMainColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/ZiscommLogo.png',
+                  height: 200,
+                  width: 200,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  controller: emailController,
+                  label: 'Email',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 21),
+                CustomTextField(
+                  controller: passwordController,
+                  label: 'Password',
+                  obscureText: !isPasswordVisible,
+                ),
+                const SizedBox(height: 21),
+                CustomButton(
+                  text: 'Login',
+                  onPressed: isLoading ? null : login,
+                  isLoading: isLoading,
+                ),
+                const SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RegistrationView()),
+                    );
+                  },
+                  child: const Text(
+                    "Don't have an account? Register",
+                    style: TextStyle(color: AppConstant.appTextColor),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   Future<void> login() async {
     try {
       setState(() {
         isLoading = true;
       });
-
-      // Disable the keyboard after login button pressed
-      FocusScope.of(context).unfocus();
 
       // Validate fields
       if (emailController.text.isEmpty && passwordController.text.isEmpty) {
@@ -93,105 +144,5 @@ class _LoginViewState extends State<LoginView> {
   void dispose() {
     emailFocusNode.dispose();
     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppConstant.appMainColor,
-      body: Center(
-        child: SizedBox(
-          width: 400,
-          child: Card(
-            color: AppConstant.appMainColor,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/ZiscommLogo.png',
-                  height: 200,
-                  width: 200,
-                ),
-                const SizedBox(height: 20),
-                TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  focusNode: emailFocusNode,
-                  cursorColor: AppConstant.appTextColor,
-                  style: const TextStyle(color: AppConstant.appTextColor),
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.email, color: AppConstant.appTextColor),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(21)),
-                      borderSide: BorderSide(color: AppConstant.appTextColor),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(21)),
-                      borderSide: BorderSide(color: AppConstant.appTextColor),
-                    ),
-                    label: Text('Email', style: TextStyle(color: AppConstant.appTextColor)),
-                    hintText: 'Enter Your Email',
-                    hintStyle: TextStyle(
-                      color: AppConstant.appTextColor,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 21),
-                TextField(
-                  cursorColor: AppConstant.appTextColor,
-                  obscureText: !isPasswordVisible,
-                  style: const TextStyle(color: AppConstant.appTextColor),
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(21)),
-                      borderSide: BorderSide(color: AppConstant.appTextColor),
-                    ),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(21)),
-                      borderSide: BorderSide(color: AppConstant.appTextColor),
-                    ),
-                    prefixIcon: const Icon(Icons.lock, color: AppConstant.appTextColor),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                        color: AppConstant.appTextColor,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          isPasswordVisible = !isPasswordVisible;
-                        });
-                      },
-                    ),
-                    label: const Text('Password', style: TextStyle(color: AppConstant.appTextColor)),
-                    hintText: 'Enter Your Password',
-                    hintStyle: const TextStyle(
-                      color: AppConstant.appTextColor,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 21),
-                ElevatedButton(
-                  onPressed: isLoading ? null : login,
-                  style: const ButtonStyle(
-                    shadowColor: MaterialStatePropertyAll(AppConstant.appSecondoryColor),
-                    backgroundColor: MaterialStatePropertyAll(AppConstant.appMainColor),
-                    overlayColor: MaterialStatePropertyAll(AppConstant.appSecondoryColor),
-                    elevation: MaterialStatePropertyAll(21),
-                    minimumSize: MaterialStatePropertyAll(Size(150, 50)),
-                  ),
-                  child: isLoading
-                      ? const SpinKitCircle(
-                          color: AppConstant.appTextColor,
-                          size: 30.0,
-                        )
-                      : const Text('Login', style: TextStyle(color: AppConstant.appTextColor)),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
