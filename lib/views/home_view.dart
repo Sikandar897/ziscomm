@@ -1,5 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:ziscomm/utils/app_constant.dart';
+
+import '../widgets/custom_drawer.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -12,8 +15,12 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Sceen'),
+        centerTitle: true,
+        foregroundColor: AppConstant.appTextColor,
+        backgroundColor: AppConstant.appMainColor,
+        title: const Text('Home Screen'),
       ),
+      drawer: const CustomDrawer(), 
     );
   }
 }
