@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ziscomm/utils/app_constant.dart';
-import 'package:ziscomm/views/auth-view/login_view.dart';
+
+import 'login_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -26,7 +27,7 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      backgroundColor: Colors.grey.shade900,
+      backgroundColor: AppConstant.appMainColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

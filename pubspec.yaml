@@ -42,6 +42,9 @@ dependencies:
   #FlutterSpin kit for animated loading indicators  
   flutter_spinkit: ^5.2.0
 
+  http: 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
