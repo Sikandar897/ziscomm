@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ziscomm/utils/app_constant.dart';
 
+import '../widgets/custom_drawer.dart';
+
 class AboutUsView extends StatelessWidget {
   const AboutUsView({Key? key}) : super(key: key);
 
@@ -13,9 +15,10 @@ class AboutUsView extends StatelessWidget {
         backgroundColor: AppConstant.appMainColor,
         title: const Text('About Us'),
       ),
+      drawer: const CustomDrawer(),
       backgroundColor: Colors.grey.shade100,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: Card(
           color: AppConstant.appSecondoryColor,
           elevation: 5.0,

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ziscomm/utils/app_constant.dart';
+import 'package:ziscomm/views/about_us.dart';
+import 'package:ziscomm/views/auth-view/login_view.dart';
+
+import '../views/contact_us.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -48,7 +52,7 @@ class CustomDrawer extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-                
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactUsView()));
               },
             ),
             ListTile(
@@ -60,7 +64,7 @@ class CustomDrawer extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-                
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutUsView(),));
               },
             ),
             ListTile(
@@ -72,7 +76,7 @@ class CustomDrawer extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-              
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginView(),));
               },
             ),
           ],

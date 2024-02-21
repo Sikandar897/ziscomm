@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:ziscomm/views/about_us.dart';
 import '../../repository/auth_repository.dart';
 import '../../utils/app_constant.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textfield.dart';
-import '../home_view.dart';
 import 'registration.dart';
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -104,7 +104,7 @@ class LoginViewState extends State<LoginView> {
 
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeView()),
+            MaterialPageRoute(builder: (context) => const AboutUsView()),
           );
         } else {
           showSnackbar('Incorrect email or password. Please try again.');
