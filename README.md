@@ -1,5 +1,5 @@
 # ziscomm
-
+![](https://raw.githubusercontent.com/Sikandar897/ziscomm/master/assets/images/mockupapp.jpg)
 This is a Flutter project built using the MVVM (Model-View-ViewModel) architecture. The application leverages fake APIs from [reqres.in](https://reqres.in/) for data retrieval and testing purposes.
 
 ## API Integration
